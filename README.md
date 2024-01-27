@@ -140,6 +140,12 @@ they arrive).
 You can see how this works by checking out the [E2E test suite](./tests/e2e/e2e_test.go) that
 runs through these flows.
 
+## Installtion in windows
+* Install & Setup KALI LINUX WSL or Linux in VMware/Virtualbox (https://www.microsoft.com/store/productId/9PKR34TNCV07?ocid=pdpshare)
+* Setup GO Language https://go.dev/doc/install
+* Setup the path 
+* Run the code as from below
+
 ## Demos
 Someone: "Seems cool but I need to see it to really get it."
 Me: "Look no further."
@@ -176,6 +182,19 @@ Lastly, you'll need to add the chains you created and the default key to the
 ./build/token-cli chain import-anr
 ```
 
+When you are done, the output should look something like this:
+```
+┌──(admin㉿Rishikesh)-[~/metacrafters/tokenvm]
+└─$ ./build/token-cli chain import-anr
+database: .token-cli
+deleted old chains: [nQL1EekdVedxAYywLpi5Lz8FG3wPe1o5eDoqL1gpY2N2GBZ39]
+stored chainID: TsfVtBfd6dV1RoTzCNvF9Patp2w9yhrjKNrFMF2YdQjF2rypW uri: http://127.0.0.1:27755/ext/bc/TsfVtBfd6dV1RoTzCNvF9Patp2w9yhrjKNrFMF2YdQjF2rypW
+stored chainID: TsfVtBfd6dV1RoTzCNvF9Patp2w9yhrjKNrFMF2YdQjF2rypW uri: http://127.0.0.1:46035/ext/bc/TsfVtBfd6dV1RoTzCNvF9Patp2w9yhrjKNrFMF2YdQjF2rypW
+stored chainID: TsfVtBfd6dV1RoTzCNvF9Patp2w9yhrjKNrFMF2YdQjF2rypW uri: http://127.0.0.1:28575/ext/bc/TsfVtBfd6dV1RoTzCNvF9Patp2w9yhrjKNrFMF2YdQjF2rypW
+stored chainID: TsfVtBfd6dV1RoTzCNvF9Patp2w9yhrjKNrFMF2YdQjF2rypW uri: http://127.0.0.1:30971/ext/bc/TsfVtBfd6dV1RoTzCNvF9Patp2w9yhrjKNrFMF2YdQjF2rypW
+stored chainID: TsfVtBfd6dV1RoTzCNvF9Patp2w9yhrjKNrFMF2YdQjF2rypW uri: http://127.0.0.1:19021/ext/bc/TsfVtBfd6dV1RoTzCNvF9Patp2w9yhrjKNrFMF2YdQjF2rypW
+```
+
 _`chain import-anr` connects to the Avalanche Network Runner server running in
 the background and pulls the URIs of all nodes tracking each chain you
 created._
@@ -190,12 +209,14 @@ command from this location:
 
 When you are done, the output should look something like this:
 ```
+┌──(admin㉿Rishikesh)-[~/metacrafters/tokenvm]
+└─$ ./build/token-cli action create-asset
 database: .token-cli
 address: token1rvzhmceq997zntgvravfagsks6w0ryud3rylh4cdvayry0dl97nsjzf3yp
-chainID: Em2pZtHr7rDCzii43an2bBi1M2mTFyLN33QP1Xfjy7BcWtaH9
-metadata (can be changed later): MarioCoin
+chainID: TsfVtBfd6dV1RoTzCNvF9Patp2w9yhrjKNrFMF2YdQjF2rypW
+metadata (can be changed later): Rishcoin
 continue (y/n): y
-✅ txID: 27grFs9vE2YP9kwLM5hQJGLDvqEY9ii71zzdoRHNGC4Appavug
+✅ txID: 4NRQ1dvhtZxFZUgsjrDYo9AmJQcGJ3knyLcDbMp1p6CbUWABE
 ```
 
 _`txID` is the `assetID` of your new asset._
@@ -213,15 +234,17 @@ running the following command from this location:
 When you are done, the output should look something like this (usually easiest
 just to mint to yourself).
 ```
+┌──(admin㉿Rishikesh)-[~/metacrafters/tokenvm]
+└─$ ./build/token-cli action mint-asset
 database: .token-cli
 address: token1rvzhmceq997zntgvravfagsks6w0ryud3rylh4cdvayry0dl97nsjzf3yp
-chainID: Em2pZtHr7rDCzii43an2bBi1M2mTFyLN33QP1Xfjy7BcWtaH9
-assetID: 27grFs9vE2YP9kwLM5hQJGLDvqEY9ii71zzdoRHNGC4Appavug
-metadata: MarioCoin supply: 0
+chainID: TsfVtBfd6dV1RoTzCNvF9Patp2w9yhrjKNrFMF2YdQjF2rypW
+assetID: 4NRQ1dvhtZxFZUgsjrDYo9AmJQcGJ3knyLcDbMp1p6CbUWABE
+metadata: Rishcoin supply: 0
 recipient: token1rvzhmceq997zntgvravfagsks6w0ryud3rylh4cdvayry0dl97nsjzf3yp
-amount: 10000
-continue (y/n): y
-✅ txID: X1E5CVFgFFgniFyWcj5wweGg66TyzjK2bMWWTzFwJcwFYkF72
+amount: 1000
+✔ continue (y/n): y█
+✅ txID: aUc87pYzwJEv9hLongaf9nfDrc3YCYU6VeaBr3w9xQhHT4JQD
 ```
 
 #### Step 3: View Your Balance
@@ -233,16 +256,19 @@ so by running the following command from this location:
 
 When you are done, the output should look something like this:
 ```
+┌──(admin㉿Rishikesh)-[~/metacrafters/tokenvm]
+└─$ ./build/token-cli key balance
 database: .token-cli
 address: token1rvzhmceq997zntgvravfagsks6w0ryud3rylh4cdvayry0dl97nsjzf3yp
-chainID: Em2pZtHr7rDCzii43an2bBi1M2mTFyLN33QP1Xfjy7BcWtaH9
-assetID (use TKN for native token): 27grFs9vE2YP9kwLM5hQJGLDvqEY9ii71zzdoRHNGC4Appavug
-metadata: MarioCoin supply: 10000 warp: false
-balance: 10000 27grFs9vE2YP9kwLM5hQJGLDvqEY9ii71zzdoRHNGC4Appavug
+chainID: TsfVtBfd6dV1RoTzCNvF9Patp2w9yhrjKNrFMF2YdQjF2rypW
+assetID (use TKN for native token): 4NRQ1dvhtZxFZUgsjrDYo9AmJQcGJ3knyLcDbMp1p6CbUWABE
+uri: http://127.0.0.1:28575/ext/bc/TsfVtBfd6dV1RoTzCNvF9Patp2w9yhrjKNrFMF2YdQjF2rypW
+metadata: Rishcoin supply: 1000 warp: false
+balance: 1000 4NRQ1dvhtZxFZUgsjrDYo9AmJQcGJ3knyLcDbMp1p6CbUWABE
 ```
 
 #### Step 4: Create an Order
-So, we have some of our token (`MarioCoin`)...now what? Let's put an order
+So, we have some of our token (`Rishcoin`)...now what? Let's put an order
 on-chain that will allow someone to trade the native token (`TKN`) for some.
 You can do so by running the following command from this location:
 ```bash
